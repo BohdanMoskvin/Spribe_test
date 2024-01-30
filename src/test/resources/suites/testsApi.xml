@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Regression suite">
+
+    <listeners>
+        <listener class-name="listener.ListenerTestApi"/>
+    </listeners>
+    <test name="Player" parallel="classes" thread-count="3">
+
+<!--        <classes>-->
+<!--            <class name="tests.api.merchantApiTest.payIn.TestCreatePayInRequestEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payIn.TestGetPayInByPayInIdEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payIn.TestGetPayInByReferenceIdEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payIn.TestSubmitCardEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payOut.TestCreatePayOutEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payOut.TestGetPayOutByPayOutIdEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payOut.TestGetPayOutByReferenceIdEndpoint"/>-->
+<!--            <class name="tests.api.merchantApiTest.payOut.TestSubmitCardPayOutEndpoint"/>-->
+
+<!--        </classes>-->
+    </test>
+
+</suite>
