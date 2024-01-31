@@ -7,13 +7,13 @@ public enum PlayerEndpoints {
   GET_ALL("/player/get/all/"),
   UPDATE("/player/update/{editor}/{id}/");
 
-  private final String value;
+  private final String endpoint;
 
-  PlayerEndpoints(String value) {
-    this.value = value;
+  PlayerEndpoints(String endpoint) {
+    this.endpoint = endpoint;
   }
 
-  public String getValue() {
-    return value;
+  public String getEndpoint() {
+    return endpoint;
   }
 }

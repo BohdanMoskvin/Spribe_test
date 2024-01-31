@@ -10,13 +10,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class GetByIdPlayerRequest extends AbstractRequest {
   public GetByIdPlayerRequest() {
-    super(PlayerEndpoints.GET_BY_ID.getValue());
+    super(PlayerEndpoints.GET_BY_ID.getEndpoint());
   }
 
-  @Step("Get player by id")
+  @Step("Get player by id request")
   @Override
   public Response sendRequest(RequestDto requestDto, int expectedStatusCode) {
-    log.info("=========================Get player by id=======================");
+    log.info("=========================Get player by id request=======================");
     return given()
         .body(requestDto)
         .when()

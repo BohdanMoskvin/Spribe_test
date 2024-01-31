@@ -2,6 +2,7 @@ package api.tests.player;
 
 import api.player.createPlayer.CreatePlayerRequest;
 import api.player.createPlayer.CreatePlayerRequestDto;
+import api.player.createPlayer.CreatePlayerResponseDto;
 import api.player.getAllPlayer.GetAllPlayerRequest;
 import api.player.getAllPlayer.GetAllPlayersResponseDto;
 import api.player.getAllPlayer.Player;
@@ -9,19 +10,21 @@ import api.player.getByIdPlayer.GetByIdPlayerRequest;
 import api.player.getByIdPlayer.GetByIdRequestDto;
 import api.player.getByIdPlayer.GetByIdResponseDto;
 import api.player.playerData.PlayerRoleData;
+import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.util.List;
 
+import static api.player.TestGroups.*;
+import static api.player.TestGroups.API;
 import static api.player.utils.JsonParser.deserialize;
 
-public class GetPlayerById extends BaseTest {
-    @Test
+public class GetPlayerByIdTest extends BaseTest {
+    @Description("Get player by id")
+    @Test (groups = { PLAYER_GET_BY_ID, POSITIVE, ALL, API})
     public void testGetById() {
         GetByIdResponseDto getSupervisor = getPlayerWithSpecificRoleById(PlayerRoleData.SUPERVISOR.getRole());
         CreatePlayerRequestDto createPlayerRequestDto = new TestDataFactory().generatePlayerUserRequest();
@@ -29,7 +32,8 @@ public class GetPlayerById extends BaseTest {
         Response response =
                 new CreatePlayerRequest(getSupervisor.getLogin())
                         .sendRequest(createPlayerRequestDto, HttpStatus.SC_OK);
-        GetByIdResponseDto playerResponseDto = deserialize(response, GetByIdResponseDto.class);
+
+        CreatePlayerResponseDto playerResponseDto = deserialize(response, CreatePlayerResponseDto.class);
 
         GetByIdRequestDto getByIdRequestDto = GetByIdRequestDto.builder().playerId(playerResponseDto.getId()).build();
 
@@ -37,22 +41,11 @@ public class GetPlayerById extends BaseTest {
 
         GetByIdResponseDto getByIdResponseDto = deserialize(responseById, GetByIdResponseDto.class);
 
-        SoftAssert softAssert = new SoftAssert();
-
-        softAssert.assertNotNull(getByIdResponseDto.getId(), "Id should not be null");
-        softAssert.assertEquals(
-                getByIdResponseDto.getScreenName(), createPlayerRequestDto.getScreenName(), "ScreenName is incorrect");
-        softAssert.assertEquals(
-                getByIdResponseDto.getGender(), createPlayerRequestDto.getGender(), "Gender is incorrect");
-        softAssert.assertEquals(
-                getByIdResponseDto.getAge(), createPlayerRequestDto.getAge(), "ScreenName is incorrect");
-        softAssert.assertEquals(
-                getByIdResponseDto.getRole(), createPlayerRequestDto.getRole(), "Role is incorrect");
-        softAssert.assertAll();
+        softAssertGetById(createPlayerRequestDto, getByIdResponseDto);
     }
 
     @Step("Get player with invalid id")
-    @Test()
+    @Test(groups = { PLAYER_GET_BY_ID, NEGATIVE, ALL, API})
     public void testFindNonExistentUser() {
         Integer invalidId = 123123123;
 

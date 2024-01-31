@@ -8,17 +8,13 @@
     </listeners>
     <test name="Player" parallel="classes" thread-count="3">
 
-<!--        <classes>-->
-<!--            <class name="tests.api.merchantApiTest.payIn.TestCreatePayInRequestEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payIn.TestGetPayInByPayInIdEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payIn.TestGetPayInByReferenceIdEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payIn.TestSubmitCardEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payOut.TestCreatePayOutEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payOut.TestGetPayOutByPayOutIdEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payOut.TestGetPayOutByReferenceIdEndpoint"/>-->
-<!--            <class name="tests.api.merchantApiTest.payOut.TestSubmitCardPayOutEndpoint"/>-->
-
-<!--        </classes>-->
+        <classes>
+            <class name="api.tests.player.CreatePlayerTest"/>
+            <class name="api.tests.player.DeletePlayerTest"/>
+            <class name="api.tests.player.GetAllTest"/>
+            <class name="api.tests.player.GetPlayerByIdTest"/>
+            <class name="api.tests.player.UpdatePlayerTest"/>
+        </classes>
     </test>
 
 </suite>

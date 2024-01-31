@@ -10,13 +10,13 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class GetAllPlayerRequest extends AbstractRequest {
   public GetAllPlayerRequest() {
-    super(PlayerEndpoints.GET_ALL.getValue());
+    super(PlayerEndpoints.GET_ALL.getEndpoint());
   }
 
-  @Step("Get all players")
+  @Step("Get all players request")
   @Override
   public Response sendRequest(RequestDto requestDto, int expectedStatusCode) {
-    log.info("=====================Get all players===============================");
+    log.info("=====================Get all players request===============================");
     return given()
         .when()
         .log()
@@ -28,8 +28,9 @@ public class GetAllPlayerRequest extends AbstractRequest {
         .response();
   }
 
-  @Step("Get all players")
+  @Step("Get all players request")
   public Response sendEmptyRequest(int expectedStatusCode) {
+    log.info("=====================Get all players request===============================");
     return sendRequest(null, expectedStatusCode);
   }
 }

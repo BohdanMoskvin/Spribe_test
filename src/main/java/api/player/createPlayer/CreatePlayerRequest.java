@@ -12,14 +12,14 @@ public class CreatePlayerRequest extends AbstractRequest {
   private final String editor;
 
   public CreatePlayerRequest(String editor) {
-    super(PlayerEndpoints.CREATE.getValue());
+    super(PlayerEndpoints.CREATE.getEndpoint());
     this.editor = editor;
   }
 
-  @Step("Create player")
+  @Step("Create player request")
   @Override
   public Response sendRequest(RequestDto requestDto, int expectedStatusCode) {
-    log.info("============================create new player==============================");
+    log.info("============================create new player request==============================");
     CreatePlayerRequestDto createPlayerRequestDto = (CreatePlayerRequestDto) requestDto;
     return given()
         .pathParam("editor", editor)

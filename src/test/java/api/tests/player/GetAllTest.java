@@ -17,12 +17,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static api.player.TestGroups.*;
+import static api.player.TestGroups.API;
 import static api.player.utils.JsonParser.deserialize;
 
 @Log4j
 public class GetAllTest extends BaseTest {
-    @Description("get all player")
-    @Test
+    @Description("Get all player")
+    @Test(groups = { PLAYER_GET, POSITIVE, ALL, API})
     public void testGetAllPlayers() {
         Response response = new GetAllPlayerRequest().sendEmptyRequest(HttpStatus.SC_OK);
         GetAllPlayersResponseDto responseDto = deserialize(response, GetAllPlayersResponseDto.class);
@@ -32,7 +34,7 @@ public class GetAllTest extends BaseTest {
         Assert.assertTrue(areAllPlayersFieldsNonNull(players), "All players should have non-null fields");
     }
 
-    @Step("Are All Players Fields Non Null")
+    @Step("Are all players fields non null")
     private boolean areAllPlayersFieldsNonNull(List<Player> players) {
         log.info("=============================Are All Players Fields Non Null============================");
         return players.stream()
@@ -57,7 +59,7 @@ public class GetAllTest extends BaseTest {
     }
 
     @Description("Number of players no more than 10")
-    @Test
+    @Test (groups = { PLAYER_GET, NEGATIVE, ALL, API})
     public void testGetMoreTenPlayers() {
 
         int numberOfPlayersToCreate = 15;
